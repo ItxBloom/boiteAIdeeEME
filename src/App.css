@@ -1,0 +1,155 @@
+/* ----- Base de la page ----- */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #edf1ef;
+  color: #10231f;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: #000000;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header p {
+  margin: 5px 0 0;
+  opacity: 0.8;
+}
+
+main {
+  flex: 1; /* le contenu prend la place disponible : le footer reste en bas */
+  display: flex;
+  justify-content: center;
+  padding: 30px 15px;
+}
+
+/* ----- Formulaire ----- */
+.formulaire {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  padding: 25px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.formulaire input,
+.formulaire textarea {
+  padding: 10px;
+  font-size: 16px;
+  font-family: inherit;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.formulaire label {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.formulaire button {
+  margin-top: 16px;
+  padding: 12px;
+  font-size: 16px;
+  background: #0b6b4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.formulaire button:hover {
+  background: #095540;
+}
+
+.message {
+  background: #e1eee8;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* ----- Footer ----- */
+#footer {
+  background: #112B4B;
+  color: white;
+  padding: 30px 20px;
+}
+
+#footer a {
+  color: white;
+}
+
+#footer a:hover {
+  color: #f2b705;
+}
+
+.back-top {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.main-col {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+#footer-logo a {
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Couleurs d'origine de chaque réseau */
+#footer .twitch a {
+  color: rgb(176, 114, 186);
+}
+
+#footer .facebook a {
+  color: white;
+}
+
+#footer .linkedin a {
+  color: rgb(68, 114, 207);
+}
+
+#footer .instagram a {
+  color: rgb(255, 181, 69);
+}
+
+.footer-text h3 {
+  margin-top: 0;
+  color: white;
+}
+
+.footer-text .two {
+  margin-top: 8px;
+}
