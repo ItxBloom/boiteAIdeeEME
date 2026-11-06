@@ -16,6 +16,7 @@ function Formulaire() {
     setEnvoye(false)
     setErreur('')
 
+
     try {
 
       // Envoyer les données à l'API
@@ -53,6 +54,13 @@ function Formulaire() {
       setErreur("Impossible de contacter le serveur.")
 
     }
+
+    // Vérifier que tous les champs sont remplis
+    if (!titre.trim() || !categorie.trim() || !texte.trim()) {
+      setErreur("Tous les champs sont obligatoires.")
+      return
+    }
+    
   }
 
   return (
