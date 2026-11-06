@@ -1,8 +1,7 @@
 import './App.css'
 import Formulaire from './components/formulaire'
-import Footer from './components/Footer'
+import Footer from './components/footer'
 
-// App est le composant principal : il assemble les morceaux de la page
 function App() {
   return (
     <div className="page">
