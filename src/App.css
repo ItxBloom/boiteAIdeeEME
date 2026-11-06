@@ -12,20 +12,48 @@ body {
   flex-direction: column;
 }
 
+/* ----- Header ----- */
 header {
   background: #000000;
   color: white;
-  padding: 20px;
-  text-align: center;
+  padding: 20px 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-titre {
+  text-align: left;
 }
 
 header h1 {
   margin: 0;
+  font-size: 32px;
 }
 
 header p {
   margin: 5px 0 0;
   opacity: 0.8;
+}
+
+/* ----- Bouton de connexion ----- */
+.bouton-admin {
+  background: #f58220;
+  color: white;
+  border: none;
+  border-radius: 25px;
+
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bouton-admin:hover {
+  background: #d96c0d;
 }
 
 main {

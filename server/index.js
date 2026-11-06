@@ -1,7 +1,9 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 import pool from "./database.js";
+
 
 dotenv.config();
 
@@ -12,6 +14,78 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+// Connexion administrateur
+app.post("/api/connexion", async (req, res) => {
+    try {
+        const { email, mdp } = req.body;
+
+        // Vérifier que les champs sont renseignés
+        if (
+            typeof email !== "string" ||
+            typeof mdp !== "string" ||
+            !email.trim() ||
+            !mdp
+        ) {
+            return res.status(400).json({
+                error: "Veuillez remplir tous les champs."
+            });
+        }
+
+        // Rechercher l'utilisateur dans MariaDB
+        const utilisateurs = await pool.query(
+            "SELECT id, email, password_hash, role, actif FROM utilisateurs WHERE email = ?",
+            [email.trim()]
+        );
+
+        // Vérifier que l'utilisateur existe
+        if (utilisateurs.length === 0) {
+            return res.status(401).json({
+                error: "Adresse e-mail ou mot de passe incorrect."
+            });
+        }
+
+        const utilisateur = utilisateurs[0];
+
+        // Vérifier si le compte est actif
+        if (Number(utilisateur.actif) !== 1) {
+            return res.status(403).json({
+                error: "Ce compte est désactivé."
+            });
+        }
+
+        // Vérifier le mot de passe avec bcrypt
+        const motDePasseValide = await bcrypt.compare(
+            mdp,
+            utilisateur.password_hash
+        );
+
+        // Refuser si le mot de passe est incorrect
+        if (!motDePasseValide) {
+            return res.status(401).json({
+                error: "Adresse e-mail ou mot de passe incorrect."
+            });
+        }
+
+        // Connexion réussie
+        res.json({
+            message: "Connexion réussie !",
+            utilisateur: {
+                id: utilisateur.id,
+                email: utilisateur.email,
+                role: utilisateur.role
+            }
+        });
+
+    } catch (error) {
+        console.error("Erreur de connexion :", error);
+
+        res.status(500).json({
+            error: "Erreur lors de la connexion."
+        });
+    }
+});
+
 
 // Tester la connexion MariaDB
 app.get("/api/test", async (req, res) => {
